@@ -12,6 +12,7 @@ import com.example.mayanmp.model.SharePreferences
 import com.example.mayanmp.viewmodel.UserViewModel
 
 class ProfileFragment : Fragment() {
+    // profile harusnya sudah -yeda
     private lateinit var binding: FragmentProfileBinding
     private lateinit var userViewModel: UserViewModel
     private lateinit var sharePreferences: SharePreferences
@@ -42,13 +43,6 @@ class ProfileFragment : Fragment() {
 
         userViewModel.getUserData(idUser)
         observeViewModel()
-
-//        binding.btnLogout.setOnClickListener {
-//            sharePreferences.logout()
-//            val intent = Intent(requireActivity(), LoginActivity::class.java)
-//            startActivity(intent)
-//            requireActivity().finish()
-//        }
 
     }
     fun observeViewModel(){

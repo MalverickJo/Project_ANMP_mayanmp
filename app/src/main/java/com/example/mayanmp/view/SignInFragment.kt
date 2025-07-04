@@ -14,6 +14,7 @@ import com.example.mayanmp.model.SharePreferences
 import com.example.mayanmp.viewmodel.UserViewModel
 
 class SignInFragment : Fragment() {
+    // login sudah - yeda
     private lateinit var binding : FragmentSignInBinding
     private lateinit var userViewModel: UserViewModel
     private lateinit var sharePreferences: SharePreferences
@@ -54,18 +55,15 @@ class SignInFragment : Fragment() {
                 Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
 
                 if (it == "Login Succesfully") {
-                    // Simpan user ID ke session
                     userViewModel.loggedInUserId.value?.let { userId ->
                         sharePreferences.saveLogin(userId)
                     }
 
-                    // Pindah ke MainActivity
                     val intent = Intent(requireActivity(), MainActivity::class.java)
                     startActivity(intent)
                     requireActivity().finish()
                 }
 
-                // Reset hasil login biar tidak ke-trigger ulang
                 userViewModel.clearLoginResult()
             }
         }

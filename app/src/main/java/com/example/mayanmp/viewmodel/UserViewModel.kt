@@ -30,7 +30,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application), C
     val loggedInUserId = MutableLiveData<Int?>()
     val selectedUser = MutableLiveData<User>()
 
-    //buat databinding
     val oldPassword = MutableLiveData<String>()
     val newPassword = MutableLiveData<String>()
     val repeatPassword = MutableLiveData<String>()
@@ -65,7 +64,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application), C
         signinResult.value = null
     }
 
-    //ambil data user
     fun getUserData(id:Int){
         launch {
             val db = AppDatabase.getDatabase(getApplication())
@@ -73,7 +71,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application), C
         }
     }
 
-    //databinding
     fun changePass() {
         launch {
             val userId = sharePreferences.getUserId()
@@ -100,8 +97,6 @@ class UserViewModel(application: Application) : AndroidViewModel(application), C
             clearText()
         }
     }
-
-    //buat munculin pesan
     private fun popUpMessage(message: String) {
         launch{
             withContext(Dispatchers.Main) {
@@ -110,14 +105,12 @@ class UserViewModel(application: Application) : AndroidViewModel(application), C
         }
     }
 
-    //ngosongin semua text
     private fun clearText() {
         oldPassword.postValue("")
         newPassword.postValue("")
         repeatPassword.postValue("")
     }
 
-    //buat Logout
     fun logOut() {
         sharePreferences.logout()
         val context = getApplication<Application>().applicationContext

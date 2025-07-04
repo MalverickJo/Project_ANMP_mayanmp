@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         if (navController != null) {
             binding.bottomNavBar.setupWithNavController(navController)
 
-            // Tambahkan listener untuk hide/show bottom nav bar
             navController.addOnDestinationChangedListener { _, destination, _ ->
                 when (destination.id) {
                     R.id.addBudgetFragment, R.id.editBudgetFragment -> {

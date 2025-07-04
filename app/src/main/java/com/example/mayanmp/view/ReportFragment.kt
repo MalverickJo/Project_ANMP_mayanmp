@@ -75,14 +75,4 @@ class ReportFragment : Fragment() {
         return "Rp${formatter.format(nominal)}"
     }
 
-    companion object {
-
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ReportFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
-    }
 }

@@ -19,7 +19,7 @@ class ExpensesFragment : Fragment() {
     private lateinit var expensesViewModel: ExpensesViewModel
     private val expensesListAdapter  = ExpensesAdapter(arrayListOf())
     private lateinit var sharePreferences: SharePreferences
-
+    //keknya selesai coba check lagi deh -jocce
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -53,7 +53,6 @@ class ExpensesFragment : Fragment() {
         }
         observeViewModel()
     }
-
     fun observeViewModel() {
         expensesViewModel.dataExpenses.observe(viewLifecycleOwner, Observer {
             expensesListAdapter.updateListBudget(it)
@@ -65,14 +64,4 @@ class ExpensesFragment : Fragment() {
         })
     }
 
-    companion object {
-
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ExpensesFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
-    }
 }

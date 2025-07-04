@@ -20,7 +20,7 @@ class BudgetFragment : Fragment() {
     private lateinit var budgetViewModel: BudgetViewModel
     private lateinit var sharePreferences: SharePreferences
     private val budgetListAdapter  = BudgetAdapter(arrayListOf())
-
+    //badjet done wak -alex
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -55,7 +55,6 @@ class BudgetFragment : Fragment() {
         }
         observeViewModel()
     }
-
     fun observeViewModel() {
         budgetViewModel.dataBudget.observe(viewLifecycleOwner, Observer {
             budgetListAdapter.updateListBudget(it)
@@ -65,17 +64,5 @@ class BudgetFragment : Fragment() {
                 binding.recBudget?.visibility = View.VISIBLE
             }
         })
-    }
-
-    companion object {
-
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            BudgetFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
     }
 }

@@ -18,7 +18,7 @@ class EditBudgetFragment : Fragment() {
     private lateinit var binding: FragmentAddBudgetBinding
     private lateinit var budgetViewModel: BudgetViewModel
     private lateinit var budget: Budget
-
+    //badjet done wak -alex
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -63,9 +63,6 @@ class EditBudgetFragment : Fragment() {
             } else {
                 Toast.makeText(requireContext(), "Budget Nominal is under your expenses", Toast.LENGTH_LONG).show()
             }
-//            Toast.makeText(requireContext(), budget.id.toString() +
-//                " budget: " + budget.budget.toString() + " budgetleft: " + budget.budgetLeft.toString()
-//                + " name: " + budget.name + " budgetspend: " + budget.budgetSpend.toString(), Toast.LENGTH_LONG).show()
         }
         binding.btnBack.setOnClickListener {
             Navigation.findNavController(it).popBackStack()
@@ -78,16 +75,5 @@ class EditBudgetFragment : Fragment() {
             binding.etBudgetName.setText(it.name)
             binding.etBudgetNominal.setText(it.nominal.toString())
         })
-    }
-
-    companion object {
-
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            EditBudgetFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
     }
 }

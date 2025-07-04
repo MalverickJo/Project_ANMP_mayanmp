@@ -16,7 +16,7 @@ class ExpensesAdapter(val listExpenses:ArrayList<ExpensesWithBudget>)
     : RecyclerView.Adapter<ExpensesAdapter.ExpensesViewHolder>() {
     class ExpensesViewHolder(var binding: CardexpensesBinding) :
         RecyclerView.ViewHolder(binding.root)
-
+    //keknya selesai coba check lagi deh -jocce
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpensesViewHolder {
         var binding = CardexpensesBinding.inflate(
             LayoutInflater.from(parent.context), parent,false)
@@ -32,7 +32,6 @@ class ExpensesAdapter(val listExpenses:ArrayList<ExpensesWithBudget>)
         holder.binding.tvExpenseAmount.text = formatRupiah(listExpenses[position].expenses.nominal)
         holder.binding.chipBudgetName.text = listExpenses[position].budget.name
 
-        //ngebuka dialog
         holder.binding.selectedExpneses.setOnClickListener {
             val context = holder.itemView.context
             val dialogBinding = DialogexpensesBinding.inflate(LayoutInflater.from(context))
@@ -41,10 +40,8 @@ class ExpensesAdapter(val listExpenses:ArrayList<ExpensesWithBudget>)
                 .setView(dialogBinding.root)
                 .create()
 
-            // Buat background dialog rounded
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-            // Set data
             val expense = listExpenses[position].expenses
             val budget = listExpenses[position].budget
 
@@ -53,7 +50,6 @@ class ExpensesAdapter(val listExpenses:ArrayList<ExpensesWithBudget>)
             dialogBinding.tvDialogDate.text = formatDate(expense.date, "dd MMM yyyy")
             dialogBinding.tvDialogDesc.text = expense.desc
 
-            // Tombol Tutup
             dialogBinding.btnCloseDialog.setOnClickListener {
                 dialog.dismiss()
             }

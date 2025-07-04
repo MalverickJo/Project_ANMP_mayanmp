@@ -15,6 +15,7 @@ import com.example.mayanmp.viewmodel.UserViewModel
 
 
 class SignUpFragment : Fragment() {
+    // register kelar - yeda
     private lateinit var binding : FragmentSignUpBinding
     private lateinit var userViewModel: UserViewModel
 
@@ -76,14 +77,4 @@ class SignUpFragment : Fragment() {
         }
     }
 
-    companion object {
-
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SignUpFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
-    }
 }

@@ -13,7 +13,7 @@ class BudgetAdapter(val listBudget:ArrayList<Budget>)
     : RecyclerView.Adapter<BudgetAdapter.BudgetViewHolder>() {
     class BudgetViewHolder(var binding: CardbudgetBinding) :
         RecyclerView.ViewHolder(binding.root)
-
+    //badjet done wak -alex
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BudgetViewHolder {
         var binding = CardbudgetBinding.inflate(
             LayoutInflater.from(parent.context), parent,false)
@@ -23,7 +23,6 @@ class BudgetAdapter(val listBudget:ArrayList<Budget>)
     override fun getItemCount(): Int {
         return listBudget.size
     }
-
     override fun onBindViewHolder(holder: BudgetViewHolder, position: Int) {
         holder.binding.tvBudgetName.text = listBudget[position].name
         holder.binding.tvBudgetNominal.text = formatRupiah(listBudget[position].nominal)
@@ -32,7 +31,6 @@ class BudgetAdapter(val listBudget:ArrayList<Budget>)
             Navigation.findNavController(it).navigate(action)
         }
     }
-
 
     fun updateListBudget(newTodoList: List<Budget>) {
         listBudget.clear()

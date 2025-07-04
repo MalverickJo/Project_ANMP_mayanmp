@@ -24,6 +24,7 @@ import java.util.Calendar
 import java.util.Locale
 
 class AddExpensesFragment : Fragment() {
+//keknya selesai coba check lagi deh -jocce
     private lateinit var binding: FragmentAddExpensesBinding
     private lateinit var expensesViewModel: ExpensesViewModel
     private lateinit var budgetViewModel: BudgetViewModel
@@ -47,47 +48,31 @@ class AddExpensesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         expensesViewModel = ViewModelProvider(this)[ExpensesViewModel::class.java]
         budgetViewModel = ViewModelProvider(this)[BudgetViewModel::class.java]
-
-
         val sharePreferences = SharePreferences(requireContext())
         val userId = sharePreferences.getUserId()
-
         budgetViewModel.getAllBudget(userId)
         observeViewModel()
-
-        val calendar = Calendar.getInstance() // default: hari ini
-
-        // Format tanggal
+        val calendar = Calendar.getInstance()
         val dateFormat = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault())
-
-        // Isi default tanggal hari ini
         binding.etExpenseDate.setText(dateFormat.format(calendar.time))
 
-        // Saat EditText diklik → munculkan date picker
         binding.etExpenseDate.setOnClickListener {
             val year = calendar.get(Calendar.YEAR)
             val month = calendar.get(Calendar.MONTH)
             val day = calendar.get(Calendar.DAY_OF_MONTH)
 
             val datePicker = DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, selectedDay ->
-                // Simpan tanggal yang dipilih ke calendar
                 calendar.set(selectedYear, selectedMonth, selectedDay)
-
-                // Tampilkan hasilnya ke EditText
                 binding.etExpenseDate.setText(dateFormat.format(calendar.time))
             }, year, month, day)
 
             datePicker.show()
         }
-
-
         binding.btnSubmitExpense.setOnClickListener {
             val date = dateStringToLong(binding.etExpenseDate.text.toString())
             val idBudget = selectedBudget.id
             val nominal = binding.etExpenseAmount.text.toString().toIntOrNull()
             val desc = binding.etExpenseDescription.text.toString()
-
-
 
             if (date == null || nominal == null || idBudget == null || desc == null) {
                 Toast.makeText(requireContext(), "Please Fill All The Blanks", Toast.LENGTH_SHORT).show()
@@ -113,19 +98,15 @@ class AddExpensesFragment : Fragment() {
     fun observeViewModel() {
         budgetViewModel.dataBudget.observe(viewLifecycleOwner, Observer { budgets ->
             if (budgets != null) {
-                // Buat list nama budget dari object Budget
                 val budgetNames = budgets.map { it.name }
-
-                // Buat adapter spinner pakai nama-nama budget
                 val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, budgetNames)
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
                 binding.spinnerBudget.adapter = adapter
 
-                // Optional: Set listener spinner supaya update selectedBudget di ViewModel
                 binding.spinnerBudget.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                     override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                        // Ambil budget yang dipilih berdasarkan posisi
+
                         selectedBudget = budgets[position]
                         budgetViewModel.selectedBudget.value = selectedBudget
                         binding.tvRemaining.text = formatRupiah(selectedBudget.budgetLeft)
@@ -154,9 +135,6 @@ class AddExpensesFragment : Fragment() {
             0L
         }
     }
-
-
-
     companion object {
 
         @JvmStatic

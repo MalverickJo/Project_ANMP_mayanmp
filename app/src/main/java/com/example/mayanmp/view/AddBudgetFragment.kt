@@ -14,6 +14,7 @@ import com.example.mayanmp.model.SharePreferences
 import com.example.mayanmp.viewmodel.BudgetViewModel
 
 class AddBudgetFragment : Fragment() {
+    //badjet done wak -alex
     private lateinit var binding: FragmentAddBudgetBinding
     private lateinit var budgetViewModel: BudgetViewModel
 
@@ -62,15 +63,4 @@ class AddBudgetFragment : Fragment() {
             Navigation.findNavController(it).popBackStack()
         }
     }
-
-//    companion object {
-//
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            AddBudgetFragment().apply {
-//                arguments = Bundle().apply {
-//
-//                }
-//            }
-//    }
 }
